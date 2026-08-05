@@ -1,37 +1,47 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
 
-const Student_Input = () => {
+const StudentCard = () => {
+  const [students, setStudents] = useState([]);
 
-    
-  const [students, setstudents] = useState([])
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("students")) || [];
+    setStudents(data);
+  }, []);
 
-  useEffect(()=>{
-    const data  = JSON.parse(localStorage.getItem("students")) || [];
-    setstudents(data);  
-  },[])
-
-  function delete_fun(index){
-  let con = confirm('Do u wan to delete')
-  if(!con) return 
-  const updatedStudents = students.filter((_, i) => i !== index);
-  setstudents(updatedStudents);
-  localStorage.setItem("students",JSON.stringify(updatedStudents));
-  }
-
+  const latestStudent = students[students.length - 1];
 
   return (
-      <div className="flex justify-center items-center flex-col  h-full relative">
-         <p className='absolute top-20 text-3xl'>Recenly added</p>
-        {students.length > 0 && (
-         <>
-               <p className='text-2xl'>Name:    {students[students.length-1].std_name}</p>
-               <p className='text-2xl'>Course: {students[students.length-1].std_cor}</p>
-               <p className='text-2xl'>Age:  {students[students.length-1].std_age}</p>
-         </>
+    <div className="flex justify-center items-center h-full mt-8 lg:mt-0">
+      <div className="w-full max-w-md bg-white shadow-lg rounded-xl p-6 border">
+        <h2 className="text-2xl font-bold text-center mb-6">
+          Recently Added
+        </h2>
+
+        {students.length > 0 ? (
+          <div className="space-y-4 text-lg">
+            <div className="flex flex-col sm:flex-row sm:justify-between">
+              <span className="font-semibold">Name:</span>
+              <span>{latestStudent.std_name}</span>
+            </div>
+
+            <div className="flex flex-col sm:flex-row sm:justify-between">
+              <span className="font-semibold">Course:</span>
+              <span>{latestStudent.std_cor}</span>
+            </div>
+
+            <div className="flex flex-col sm:flex-row sm:justify-between">
+              <span className="font-semibold">Age:</span>
+              <span>{latestStudent.std_age}</span>
+            </div>
+          </div>
+        ) : (
+          <div className="text-center text-gray-500 py-8">
+            No student added yet.
+          </div>
         )}
       </div>
-  )
-}
+    </div>
+  );
+};
 
-export default Student_Input
+export default StudentCard;
