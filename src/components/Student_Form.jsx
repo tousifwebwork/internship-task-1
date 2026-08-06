@@ -9,8 +9,13 @@ const StudentForm = () => {
     std_age: "",
   });
 
+  const [latestStudent, setLatestStudent] = useState(null);
+
   function handleChange(e) {
-    setStudent({ ...student, [e.target.name]: e.target.value });
+    setStudent({
+      ...student,
+      [e.target.name]: e.target.value,
+    });
   }
 
   function formSubmit(e) {
@@ -28,6 +33,9 @@ const StudentForm = () => {
 
     localStorage.setItem("students", JSON.stringify(updatedStudents));
 
+    // Update the recently added card
+    setLatestStudent(student);
+
     setStudent({
       std_name: "",
       std_cor: "",
@@ -39,12 +47,10 @@ const StudentForm = () => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      {/* Form */}
       <form
         onSubmit={formSubmit}
         className="bg-gray-200 p-6 rounded-2xl flex flex-col gap-6"
       >
-        {/* Name */}
         <div className="flex flex-col sm:flex-row sm:items-center gap-3 p-4 border border-gray-400 rounded-lg hover:bg-white">
           <label className="sm:w-24 font-semibold">Name</label>
 
@@ -54,11 +60,10 @@ const StudentForm = () => {
             placeholder="John Cena"
             value={student.std_name}
             onChange={handleChange}
-            className="flex-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="flex-1 w-full px-4 py-2 border rounded-md"
           />
         </div>
 
-        {/* Course */}
         <div className="flex flex-col sm:flex-row sm:items-center gap-3 p-4 border border-gray-400 rounded-lg hover:bg-white">
           <label className="sm:w-24 font-semibold">Course</label>
 
@@ -68,11 +73,10 @@ const StudentForm = () => {
             placeholder="Computer"
             value={student.std_cor}
             onChange={handleChange}
-            className="flex-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="flex-1 w-full px-4 py-2 border rounded-md"
           />
         </div>
 
-        {/* Age */}
         <div className="flex flex-col sm:flex-row sm:items-center gap-3 p-4 border border-gray-400 rounded-lg hover:bg-white">
           <label className="sm:w-24 font-semibold">Age</label>
 
@@ -82,14 +86,13 @@ const StudentForm = () => {
             placeholder="22"
             value={student.std_age}
             onChange={handleChange}
-            className="flex-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="flex-1 w-full px-4 py-2 border rounded-md"
           />
         </div>
 
-        {/* Button */}
         <button
           type="submit"
-          className="w-full bg-blue-500 hover:bg-blue-700 text-white py-3 rounded-lg transition"
+          className="w-full bg-blue-500 hover:bg-blue-700 text-white py-3 rounded-lg"
         >
           Add Student
         </button>
@@ -104,8 +107,7 @@ const StudentForm = () => {
         </div>
       </form>
 
-      {/* Recently Added Card */}
-      <StudentCard />
+      <StudentCard L_Student={latestStudent} />
     </div>
   );
 };
