@@ -43,6 +43,12 @@ const StudentList = () => {
   function searchFun(){
     return students.filter((student)=>student.std_name.toLowerCase().includes(search.toLowerCase()))
   }
+  function toggle_status(index){
+    const updatedStudents = [...students];
+    updatedStudents[index].status = updatedStudents[index].status === "Active"? "Inactive"  : "Active";
+    setStudents(updatedStudents);
+     localStorage.setItem("students", JSON.stringify(updatedStudents));
+  }
 
   return (
     <div className="mt-0 px-4"> 
@@ -67,16 +73,15 @@ const StudentList = () => {
  
 
       <div className="overflow-x-auto rounded-lg shadow-lg">
-        <table className="min-w-full border border-gray-300 bg-white">
+        <table className="min-w-[700px] w-full border border-gray-300 bg-white">
           
           <thead className="bg-gray-200">
             <tr>
-              <th className="border px-3 py-3 md:px-6">Name</th>
-              <th className="border px-3 py-3 md:px-6">Course</th>
-              <th className="border px-3 py-3 md:px-6">Age</th>
-              <th className="hidden sm:table-cell border px-3 py-3 md:px-6">
-                Action
-              </th>
+              <th className="w-32 border px-3 py-3">Name</th>
+              <th className="w-32 border px-3 py-3">Course</th>
+              <th className="w-32 border px-3 py-3">Age</th>
+              <th className="w-32 border px-3 py-3">Status</th>
+              <th className="w-32 border px-3 py-3">  Action  </th>
             </tr>
           </thead>
 
@@ -138,8 +143,18 @@ const StudentList = () => {
                       )}
                     </td>
 
+                    {/* Status */}
+                  <td className="border px-3 py-3 md:px-6 text-center">                      
+                    <fieldset className="border rounded-box p-2" onClick={()=>toggle_status(index)}>
+                               <label className="flex items-center gap-2">
+                                   <input type="checkbox" className="toggle toggle-sm" checked={student.status === "Active"} onChange={() => toggle_status(index)}/>
+                                   <span className="text-sm">{student.status || "Inactive"}</span>
+                               </label>
+                      </fieldset>
+                    </td>
+
                     {/* Desktop Action */}
-                    <td className="hidden sm:table-cell border px-3 py-3 md:px-6">
+                    <td className="border px-3 py-3 md:px-6">
                       <div className="flex gap-2 justify-center">
                         <button onClick={() => deleteFun(index)}
                           className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition">
@@ -154,23 +169,10 @@ const StudentList = () => {
                     </td>
                   </tr>
 
-                  {/* Mobile Buttons */}
-                  <tr className="sm:hidden">
-                    <td colSpan="3" className="border px-3 py-3">
-                      <div className="flex gap-2">
-                        <button
-                          onClick={() => deleteFun(index)}
-                          className="flex-1 bg-red-500 hover:bg-red-600 text-white py-2 rounded-md" >
-                          Delete
-                        </button>
 
-                        <button  onClick={() =>editIndex === index ? updateFun(index): editFun(index) }
-                          className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-md">
-                          {editIndex === index ? "Update" : "Edit"}
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
+
+
+ 
                 </React.Fragment>
               ))  
             )
