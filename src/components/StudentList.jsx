@@ -5,7 +5,6 @@ const StudentList = () => {
   const [students, setStudents] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
   const [search, setSearch] = useState("");
-
   const [editStudent, setEditStudent] = useState({
     std_name: "",
     std_cor: "",
@@ -33,13 +32,14 @@ const StudentList = () => {
 
   function updateFun(index) {
     const updatedStudents = [...students];
-
     updatedStudents[index] = editStudent;
-
     setStudents(updatedStudents);
     localStorage.setItem("students", JSON.stringify(updatedStudents));
-
     setEditIndex(null);
+  }
+
+  function searchFun(){
+    return students.filter((student)=>student.std_name.toLowerCase().includes(search.toLowerCase()))
   }
 
   return (
@@ -55,18 +55,15 @@ const StudentList = () => {
       Search by Name
     </label>
 
-    <input
-      type="text"
-      value={search}
-      onChange={(e) => setSearch(e.target.value)}
-      placeholder="Search by Name"
-      className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-    />
+    <input type="text" value={search}
+      onChange={(e) => setSearch(e.target.value)}  placeholder="Search by Name"
+      className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"/>
   </div>
-</div>
+     </div>
 
       <div className="overflow-x-auto rounded-lg shadow-lg">
         <table className="min-w-full border border-gray-300 bg-white">
+          
           <thead className="bg-gray-200">
             <tr>
               <th className="border px-3 py-3 md:px-6">Name</th>
@@ -79,32 +76,30 @@ const StudentList = () => {
           </thead>
 
           <tbody>
-            {students.length === 0 ? (
+            {
+            students.length === 0 ? 
+            (
               <tr>
                 <td colSpan="4" className="text-center py-12 text-gray-500 text-lg"  >
                   No Data Added
                 </td>
               </tr>
-            ) : (
-              students
-              .map((student, index) => ({ student, index }))
-              .filter(({student}) => student.std_name.toLowerCase().includes(search.toLowerCase()) )
-              .map(({student, index}) => (
+            ) 
+            : 
+            (
+              searchFun().map((student,index)=>(
                 <React.Fragment key={index}>
-                  {/* Student Row */}
+                 
+                 
                   <tr className="hover:bg-gray-100">  
+                    
                     {/* Name */}
                     <td className="border px-3 py-3 md:px-6">
                       {editIndex === index ? (
-                        <input
-                          type="text"
-                          value={editStudent.std_name}
+                        <input type="text" value={editStudent.std_name}
                           onChange={(e) =>setEditStudent({  ...editStudent,  std_name: e.target.value,})}
-                          className="w-full border rounded-md px-2 py-1"
-                        />
-                      ) : (
-                        student.std_name
-                      )}
+                          className="w-full border rounded-md px-2 py-1" />
+                      ) : ( student.std_name )}
                     </td>
 
                     {/* Course */}
@@ -113,17 +108,10 @@ const StudentList = () => {
                         <input
                           type="text"
                           value={editStudent.std_cor}
-                          onChange={(e) =>
-                            setEditStudent({
-                              ...editStudent,
-                              std_cor: e.target.value,
-                            })
-                          }
+                          onChange={(e) => setEditStudent({ ...editStudent,std_cor: e.target.value,}) }
                           className="w-full border rounded-md px-2 py-1"
                         />
-                      ) : (
-                        student.std_cor
-                      )}
+                      ) : (  student.std_cor  )}
                     </td>
 
                     {/* Age */}
@@ -148,21 +136,13 @@ const StudentList = () => {
                     {/* Desktop Action */}
                     <td className="hidden sm:table-cell border px-3 py-3 md:px-6">
                       <div className="flex gap-2 justify-center">
-                        <button
-                          onClick={() => deleteFun(index)}
-                          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition"
-                        >
+                        <button onClick={() => deleteFun(index)}
+                          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition">
                           Delete
                         </button>
 
-                        <button
-                          onClick={() =>
-                            editIndex === index
-                              ? updateFun(index)
-                              : editFun(index)
-                          }
-                          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition"
-                        >
+                        <button onClick={() =>  editIndex === index ? updateFun(index)  : editFun(index)}
+                          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition">
                           {editIndex === index ? "Update" : "Edit"}
                         </button>
                       </div>
@@ -175,28 +155,23 @@ const StudentList = () => {
                       <div className="flex gap-2">
                         <button
                           onClick={() => deleteFun(index)}
-                          className="flex-1 bg-red-500 hover:bg-red-600 text-white py-2 rounded-md"
-                        >
+                          className="flex-1 bg-red-500 hover:bg-red-600 text-white py-2 rounded-md" >
                           Delete
                         </button>
 
-                        <button
-                          onClick={() =>
-                            editIndex === index
-                              ? updateFun(index)
-                              : editFun(index)
-                          }
-                          className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-md"
-                        >
+                        <button  onClick={() =>editIndex === index ? updateFun(index): editFun(index) }
+                          className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-md">
                           {editIndex === index ? "Update" : "Edit"}
                         </button>
                       </div>
                     </td>
                   </tr>
                 </React.Fragment>
-              ))
-            )}
+              ))  
+            )
+            }
           </tbody>
+
         </table>
       </div>
     </div>
