@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import SortStudents from "./SortStudents";
+import TotalStudent from "./TotalStudent";
 
 const StudentList = () => {
   const [students, setStudents] = useState([]);
@@ -43,23 +45,26 @@ const StudentList = () => {
   }
 
   return (
-    <div className="mt-8 px-4">
+    <div className="mt-0 px-4"> 
       
-      <div className="mb-8 flex flex-col gap-4 md:grid md:grid-cols-[180px_1fr] md:items-center">
-         <Link   to="/"  className="w-full md:w-fit text-center bg-blue-500 hover:bg-blue-700 text-white px-5 py-2 rounded-lg transition">
-             ← Back to Home
-         </Link>
+      <div className="mt-0 mb-15 grid grid-cols-2 gap-4 md:grid-cols-[180px_1fr]">
 
-  <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-    <label className="font-medium whitespace-nowrap">
-      Search by Name
-    </label>
+          <Link  to="/" className="text-center bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm md:text-base">← <span className="hidden sm:inline">Back to Home</span><span className="sm:hidden">Back</span></Link>
+        
+         <div className="flex flex-col gap-2">
+           <SortStudents students={students} setStudents={setStudents} />
+           <TotalStudent count={searchFun().length} />
+         </div>
+        
+        {/* Search */}
+        <div className="col-span-2 md:col-span-1 md:row-span-2 md:row-start-1 md:col-start-2 flex flex-col sm:flex-row sm:items-center gap-3">
+          <label className="font-medium whitespace-nowrap">  Search by Name </label>
+          <input type="text"  value={search}  onChange={(e) => setSearch(e.target.value)} placeholder="Search by Name"
+                className="w-full border border-gray-600  rounded-lg px-4 py-2  focus:ring-1 focus:outline-none focus:ring-blue-500" />
+        </div>
 
-    <input type="text" value={search}
-      onChange={(e) => setSearch(e.target.value)}  placeholder="Search by Name"
-      className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"/>
-  </div>
-     </div>
+      </div>
+ 
 
       <div className="overflow-x-auto rounded-lg shadow-lg">
         <table className="min-w-full border border-gray-300 bg-white">
