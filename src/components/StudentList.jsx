@@ -81,7 +81,8 @@ const StudentList = () => {
               <th className="w-32 border px-3 py-3">Course</th>
               <th className="w-32 border px-3 py-3">Age</th>
               <th className="w-32 border px-3 py-3">Status</th>
-              <th className="w-32 border px-3 py-3">  Action  </th>
+              <th className="w-32 border px-3 py-3">Date</th>
+              <th className="w-32 border px-3 py-3">Action</th>
             </tr>
           </thead>
 
@@ -143,15 +144,22 @@ const StudentList = () => {
                       )}
                     </td>
 
-                    {/* Status */}
+                     {/* Status */}
                   <td className="border px-3 py-3 md:px-6 text-center">                      
-                    <fieldset className="border rounded-box p-2" onClick={()=>toggle_status(index)}>
+                    <fieldset className="border rounded-box p-2 md:w-10 " onClick={()=>toggle_status(index)}>
                                <label className="flex items-center gap-2">
                                    <input type="checkbox" className="toggle toggle-sm" checked={student.status === "Active"} onChange={() => toggle_status(index)}/>
                                    <span className="text-sm">{student.status || "Inactive"}</span>
                                </label>
                       </fieldset>
+                  </td>
+
+                    {/* Date */}
+                    <td className="border px-3 py-3 md:px-6 text-center">                      
+                     <p>{student.date}</p>
                     </td>
+
+                   
 
                     {/* Desktop Action */}
                     <td className="border px-3 py-3 md:px-6">

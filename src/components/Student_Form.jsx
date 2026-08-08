@@ -25,14 +25,16 @@ const StudentForm = () => {
 
     const oldStudents = JSON.parse(localStorage.getItem("students")) || [];
 
+    // ID
     const ID_number = oldStudents.length+1;
     const ID = `STD${String(ID_number).padStart(3,'0')}`
 
-    const new_data={
-      std_id:ID,
-      ...student
-    }
+    // Date
+    const dateAdded = new Date().toLocaleDateString()
 
+
+
+    const new_data={ std_id:ID,date:dateAdded , ...student}
     const updatedStudents = [...oldStudents, new_data];
 
     localStorage.setItem("students", JSON.stringify(updatedStudents));
