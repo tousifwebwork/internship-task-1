@@ -30,10 +30,10 @@ function AgeDesc() {
       <details className="dropdown" id="sortDropdown">
         <summary className="btn  w-full m-1">Sort Name By</summary>
          <ul className="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-            <li> <button onClick={NameAsc}>Name [A-Z]</button></li>
-            <li> <button onClick={NameDesc}>Name [Z-A]</button></li>
-            <li> <button onClick={AgeAsc}>Age [Ascending]</button></li>
-            <li> <button onClick={AgeDesc}>Age [Descending]</button></li>
+            <li> <button className='dark:text-black' onClick={NameAsc}>Name [A-Z]</button></li>
+            <li> <button className='dark:text-black' onClick={NameDesc}>Name [Z-A]</button></li>
+            <li> <button className='dark:text-black' onClick={AgeAsc}>Age [Ascending]</button></li>
+            <li> <button className='dark:text-black' onClick={AgeDesc}>Age [Descending]</button></li>
         </ul>
       </details>
   )

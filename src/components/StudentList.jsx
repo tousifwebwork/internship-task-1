@@ -64,16 +64,15 @@ const StudentList = () => {
         
         {/* Search */}
         <div className="col-span-2 md:col-span-1 md:row-span-2 md:row-start-1 md:col-start-2 flex flex-col sm:flex-row sm:items-center gap-3">
-          <label className="font-medium whitespace-nowrap">  Search by Name </label>
-          <input type="text"  value={search}  onChange={(e) => setSearch(e.target.value)} placeholder="Search by Name"
-                className="w-full border border-gray-600  rounded-lg px-4 py-2  focus:ring-1 focus:outline-none focus:ring-blue-500" />
+          <label className="font-medium whitespace-nowrap dark:text-white">  Search by Name </label>
+          <input type="text"  value={search}  onChange={(e) => setSearch(e.target.value)} placeholder="Search by Name"className="dark:text-white w-full border border-gray-600  rounded-lg px-4 py-2  focus:ring-1 focus:outline-none focus:ring-blue-500" />
         </div>
 
       </div>
  
 
       <div className="overflow-x-auto rounded-lg shadow-lg">
-        <table className="min-w-[700px] w-full border border-gray-300 bg-white">
+        <table className="dark:text-black min-w-[700px] w-full border border-gray-300 bg-white">
           
           <thead className="bg-gray-200">
             <tr>
@@ -146,7 +145,7 @@ const StudentList = () => {
 
                      {/* Status */}
                   <td className="border px-3 py-3 md:px-6 text-center">                      
-                    <fieldset className="border rounded-box p-2 md:w-10 " onClick={()=>toggle_status(index)}>
+                    <fieldset className={student.status==="Active" ? "border bg-green-200 rounded-box p-2 md:w-10 " : "border bg-red-200 rounded-box p-2 md:w-10 "} onClick={()=>toggle_status(index)}>
                                <label className="flex items-center gap-2">
                                    <input type="checkbox" className="toggle toggle-sm" checked={student.status === "Active"} onChange={() => toggle_status(index)}/>
                                    <span className="text-sm">{student.status || "Inactive"}</span>

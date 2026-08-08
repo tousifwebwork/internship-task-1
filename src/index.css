@@ -1,2 +1,11 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+@layer components {
+  label,input,span,h2 {
+    @apply text-black dark:text-black;
+  } 
+}

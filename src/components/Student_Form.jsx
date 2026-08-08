@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import StudentCard from "./StudentCard";
+import Toggle from "./Nab/Toggle";
 
 const StudentForm = () => {
   const [student, setStudent] = useState({
@@ -53,14 +54,12 @@ const StudentForm = () => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <form
-        onSubmit={formSubmit}
-        className="bg-gray-200 p-6 rounded-2xl flex flex-col gap-6"
-      >
+ 
+      <form  onSubmit={formSubmit} className="bg-gray-200 p-6 rounded-2xl flex flex-col gap-6">
 
         {/* Name */}
         <div className="flex flex-col sm:flex-row sm:items-center gap-3 p-4 border border-gray-400 rounded-lg hover:bg-white">
-          <label className="sm:w-24 font-semibold">Name</label>
+          <label className=" sm:w-24 font-semibold">Name</label>
 
           <input
             type="text"
@@ -68,7 +67,7 @@ const StudentForm = () => {
             placeholder="John Cena"
             value={student.std_name}
             onChange={handleChange}
-            className="flex-1 w-full px-4 py-2 border rounded-md"
+            className="flex-1 w-full px-4 py-2 border rounded-md "
           />
         </div>
 
@@ -78,12 +77,12 @@ const StudentForm = () => {
           <div className="dropdown dropdown-end ">
              <div  id="courseBtn" tabIndex={0} role="button" className="btn w-48 md:w-90 md:ml-5">  {student.std_cor || "Select Course" }  ⬇️</div>
                <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-                 <li> <button type="button" onClick={()=>setStudent({ ...student, std_cor: "HTML" })}  >HTML</button></li>
-                 <li> <button type="button" onClick={()=>setStudent({ ...student, std_cor: "CSS" })}  >CSS</button></li>
-                 <li> <button type="button" onClick={()=>setStudent({ ...student, std_cor: "JavaScript" })}  >JavaScript</button></li>
-                 <li> <button type="button" onClick={()=>setStudent({ ...student, std_cor: "React" })}  >React</button></li>
-                 <li> <button type="button" onClick={()=>setStudent({ ...student, std_cor: "Node js" })  }>Node.js</button></li>
-                 <li> <button type="button" onClick={()=>setStudent({ ...student, std_cor: "MongoDB" })  }>MongoDB</button></li>
+                 <li> <button className="dark:text-black" type="button" onClick={()=>setStudent({ ...student, std_cor: "HTML" })}  >HTML</button></li>
+                 <li> <button className="dark:text-black" type="button" onClick={()=>setStudent({ ...student, std_cor: "CSS" })}  >CSS</button></li>
+                 <li> <button className="dark:text-black" type="button" onClick={()=>setStudent({ ...student, std_cor: "JavaScript" })}  >JavaScript</button></li>
+                 <li> <button className="dark:text-black" type="button" onClick={()=>setStudent({ ...student, std_cor: "React" })}  >React</button></li>
+                 <li> <button className="dark:text-black" type="button" onClick={()=>setStudent({ ...student, std_cor: "Node js" })  }>Node.js</button></li>
+                 <li> <button className="dark:text-black" type="button" onClick={()=>setStudent({ ...student, std_cor: "MongoDB" })  }>MongoDB</button></li>
                </ul>
              </div>
         </div>
@@ -118,8 +117,8 @@ const StudentForm = () => {
           </Link>
         </div>
       </form>
-
       <StudentCard L_Student={latestStudent} />
+ 
     </div>
   );
 };
