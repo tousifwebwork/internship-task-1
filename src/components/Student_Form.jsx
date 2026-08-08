@@ -52,10 +52,18 @@ const StudentForm = () => {
     alert("Student Added Successfully");
   }
 
+  function reset_fun(){
+    setStudent({
+      std_name: "",
+      std_cor: "",
+      std_age: "",
+    });
+  }
+
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-5 md:p-0 ">
  
-      <form  onSubmit={formSubmit} className="bg-gray-200 p-6 rounded-2xl flex flex-col gap-6">
+      <form  onSubmit={formSubmit} className="bg-gray-200 p-6 rounded-2xl flex flex-col gap-5 md:ml-20 ">
 
         {/* Name */}
         <div className="flex flex-col sm:flex-row sm:items-center gap-3 p-4 border border-gray-400 rounded-lg hover:bg-white">
@@ -108,15 +116,16 @@ const StudentForm = () => {
           Add Student
         </button>
 
-        <div className="text-center">
-          <Link
-            to="/student-details"
-            className="underline text-blue-700 hover:text-blue-900"
-          >
+        <div className="text-center  flex justify-center items-center gap-5">
+          <Link  to="/student-details"  className="underline text-blue-700 hover:text-blue-900">
             View All Students
           </Link>
+          <button type="button" onClick={reset_fun} className="bg-blue-200 px-4 py-2 rounded hover:bg-blue-600 hover:text-white dark:bg-blue-500 dark:hover:bg-blue-800">
+            Reset
+          </button>
         </div>
       </form>
+
       <StudentCard L_Student={latestStudent} />
  
     </div>

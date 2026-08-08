@@ -155,7 +155,7 @@ const StudentList = () => {
 
                     {/* Date */}
                     <td className="border px-3 py-3 md:px-6 text-center">                      
-                     <p>{student.date}</p>
+                     <p>{student.date || 'N/A' }</p>
                     </td>
 
                    
