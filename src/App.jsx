@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import StudentForm from './components/Student_Form';
-import StudentList from './components/StudentList';
+import StudentForm from './pages/Student_Form';
+import StudentList from './pages/StudentList';
 import { Route, Routes } from 'react-router-dom';
 import Toggle from './components/Nab/Toggle';
 

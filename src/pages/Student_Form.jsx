@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import StudentCard from "./StudentCard";
-import Toggle from "./Nab/Toggle";
+import StudentCard from "../components/StudentCard";
+import Toggle from "../components/Nab/Toggle";
 
 const StudentForm = () => {
   const [student, setStudent] = useState({
