@@ -50,14 +50,24 @@ const StudentList = () => {
       {/* Top Section */}
       <div className="mt-0 mb-1 grid grid-cols-2 gap-4 md:grid-cols-[180px_1fr]">
         
+        {/* PAgination Button */}
+        <Link
+          to="/pagination"
+          className="text-center bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm md:text-base"
+        >
+          ←{" "}
+          <span className="text-white hidden sm:inline">Pagination</span>
+          <span className="text-white sm:hidden">Pagination</span>
+        </Link>
+
         {/* Back Button */}
         <Link
           to="/"
           className="text-center bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm md:text-base"
         >
           ←{" "}
-          <span className="hidden sm:inline">Back to Home</span>
-          <span className="sm:hidden">Back</span>
+          <span className="text-white hidden sm:inline">Back to Home</span>
+          <span className="text-white sm:hidden">Back</span>
         </Link>
 
         {/* Sort + Total */}

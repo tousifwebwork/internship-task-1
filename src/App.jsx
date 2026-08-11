@@ -3,6 +3,7 @@ import StudentForm from './pages/Student_Form';
 import StudentList from './pages/StudentList';
 import { Route, Routes } from 'react-router-dom';
 import Toggle from './components/Nab/Toggle';
+import Pagination from './components/Pagination';
 
 const App = () => {
 
@@ -23,6 +24,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<StudentForm />} />
           <Route path="/student-details" element={<StudentList />} />
+          <Route path="/pagination" element={<Pagination />} />
         </Routes>
 
       </div>
