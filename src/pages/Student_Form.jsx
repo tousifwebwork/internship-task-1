@@ -105,13 +105,60 @@ const StudentForm = () => {
 
   }
 
-  function reset_fun(){
-    setStudent({
-      std_name: "",
-      std_cor: "",
-      std_age: "",
-    });
-  }
+ function reset_fun() {
+  toast.custom(
+    (t) => (
+      <div
+        className={`${
+          t.visible
+            ? "animate-custom-enter"
+            : "animate-custom-leave"
+        } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+      >
+        <div className="flex-1 w-0 p-4">
+          <div className="flex items-start">
+            <div className="ml-3 flex-1">
+              <p className="text-sm font-medium text-gray-900">
+                Are You Sure to Restart?
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex border-l border-gray-200">
+
+          {/* YES */}
+          <button
+            onClick={() => {
+              setStudent({
+                std_name: "",
+                std_cor: "",
+                std_age: "",
+              });
+
+              toast.remove(t.id);
+            }}
+            className="border border-transparent p-4 text-sm font-medium text-indigo-600 hover:text-indigo-500"
+          >
+            Yes
+          </button>
+
+          {/* NO */}
+          <button
+             onClick={()=>toast.remove(t.id)}
+            className="bg-blue-300 cursor-pointer border border-transparent p-4 text-sm font-medium text-red-600 hover:text-red-500"
+          >
+            No
+          </button>
+
+        </div>
+      </div>
+    ),
+    {
+      duration: Infinity,
+    }
+  );
+}
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-5 md:p-0 ">
