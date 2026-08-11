@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import StudentCard from "../components/StudentCard";
 import Toggle from "../components/Nab/Toggle";
+import toast from "react-hot-toast";
 
 const StudentForm = () => {
   const [student, setStudent] = useState({
@@ -20,7 +21,7 @@ const StudentForm = () => {
     e.preventDefault();
 
     if (!student.std_name || !student.std_cor || !student.std_age) {
-      alert("All fields are required");
+      toast.error("All Fields are Required")
       return;
     }
 
@@ -33,7 +34,7 @@ const StudentForm = () => {
     s.std_age === student.std_age
    )})
     if (dublicate) {
-     alert("Student already exists");
+     toast.error("User Already exist")
      return;
     }
 
@@ -60,7 +61,8 @@ const StudentForm = () => {
       std_age: "",
     });
 
-    alert("Student Added Successfully");
+    toast.success('Successfully Added!')
+
   }
 
   function reset_fun(){
