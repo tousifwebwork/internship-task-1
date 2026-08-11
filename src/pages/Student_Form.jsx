@@ -176,7 +176,9 @@ const StudentForm = () => {
             value={student.std_name}
             onChange={handleChange}
             className="flex-1 w-full px-4 py-2 border rounded-md "
-          />
+          /> 
+          <label className=" px-2 py-2 w-36">No of Char: <span className="px-0">{student.std_name.length}</span></label>
+       
         </div>
 
         {/* Course */}
