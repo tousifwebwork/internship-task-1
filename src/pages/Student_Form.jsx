@@ -26,6 +26,17 @@ const StudentForm = () => {
 
     const oldStudents = JSON.parse(localStorage.getItem("students")) || [];
 
+    const dublicate = oldStudents.some((s)=>{
+    return(
+    s.std_name === student.std_name &&
+    s.std_cor === student.std_cor &&
+    s.std_age === student.std_age
+   )})
+    if (dublicate) {
+     alert("Student already exists");
+     return;
+    }
+
     // ID
     const ID_number = oldStudents.length+1;
     const ID = `STD${String(ID_number).padStart(3,'0')}`
