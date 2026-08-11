@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-
+import {Link} from 'react-router-dom'
 const Pagination = () => {
    const [students, setstudents] = useState('');
     const [index, setIndex] = useState(0);
@@ -13,13 +13,25 @@ const Pagination = () => {
 
   return (
     <div className=" h-screen w-full flex justify-center items-center flex-col relative">
-  <div className="bg-gray-100  p-6 rounded-lg shadow-md absolute top-1">
+     <div className='absolute top-0 flex gap-3'>
+        <div className='flex flex-row gap-5'>
+        <Link to="/" className="text-center bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm md:text-base">←{" "}
+          <span className="text-white hidden sm:inline">Back to Home</span>
+          <span className="text-white sm:hidden">Back</span>
+        </Link>
+        <Link to="/student-details" className="text-center bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm md:text-base">←{" "}
+          <span className="text-white hidden sm:inline">View Students</span>
+          <span className="text-white sm:hidden">View Students</span>
+        </Link>
+        </div> 
+    </div>
+     <div className="bg-gray-100  p-6 rounded-lg shadow-md absolute top-13">
     
     <h1 className="text-3xl text-center mb-5">
       Pagination
     </h1>
 
-    <div className='w-220 h-60 border p-2'>
+    <div className='w-[900px] min-h-[240px]  border p-2 mt-5'>
         {
             students.length === 0 ? (
             <>
@@ -56,7 +68,7 @@ const Pagination = () => {
      <button className="join-item btn btn-outline"  onClick={() => setIndex(index + 3)}  disabled={index + 3 >= students.length}>Next</button>
     </div>
 
-  </div>
+     </div>
     </div>
   )
 }
